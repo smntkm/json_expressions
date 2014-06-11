@@ -19,15 +19,15 @@ module JsonExpressions
         end
         alias_method :===, :matches?
 
-        def failure_message_for_should
+        def failure_message
           "expected #{@target.inspect} to match JSON expression #{@expected.inspect}\n" + @expected.last_error
         end
-        alias_method :failure_message, :failure_message_for_should
+        alias_method :failure_message_for_should, :failure_message
 
-        def failure_message_for_should_not
-          "expected #{@target.inspect} not to match JSON expression #{@expected.inspect}"
+        def failure_message_when_negated
+          "expected #{@target.inspect} not to match JSON  expression #{@expected.inspect}"
         end
-        alias_method :failure_message_when_negated, :failure_message_for_should_not
+        alias_method :failure_message_for_should_not, :failure_message_when_negated
 
         def description
           "should equal JSON expression #{@expected.inspect}"
